@@ -9,6 +9,7 @@ export interface Project {
     featured: boolean;
     status: ProjectStatus;
     liveLink?: string;
+    githubLink?: string;
 }
 
 export const projects: Project[] = [
@@ -20,7 +21,8 @@ export const projects: Project[] = [
         tags: ["C++", "Networking", "Security", "Linux"],
         featured: true,
         status: "live",
-        liveLink: "https://ids-defense.netlify.app/"
+        liveLink: "https://ids-defense.netlify.app/",
+        githubLink: "https://github.com/balanishithreddy/ids-defense"
     },
     {
         slug: "secure-chat",
@@ -30,7 +32,8 @@ export const projects: Project[] = [
         tags: ["React", "Node.js", "Socket.io", "Cryptography"],
         featured: true,
         status: "live",
-        liveLink: "https://mailsheild.netlify.app/"
+        liveLink: "https://mailsheild.netlify.app/",
+        githubLink: "https://github.com/balanishithreddy/secure-chat"
     },
     {
         slug: "vuln-scanner",
@@ -39,7 +42,8 @@ export const projects: Project[] = [
         fullDescription: "An automated vulnerability assessment tool that performs deep scans for common web application vulnerabilities such as Cross-Site Scripting (XSS) and SQL Injection (SQLi). It utilizes Selenium for dynamic scanning and Owasp ZAP for comprehensive security analysis, generating automated PDF reports.",
         tags: ["Python", "Selenium", "Owasp ZAP", "Automation"],
         featured: false,
-        status: "maintenance"
+        status: "maintenance",
+        githubLink: "https://github.com/balanishithreddy/vuln-scanner"
     },
     {
         slug: "malware-lab",
@@ -48,7 +52,8 @@ export const projects: Project[] = [
         fullDescription: "A sophisticated laboratory environment isolated for the purpose of analyzing malware behavior. It captures system calls, network activity, and file system changes in a controlled sandbox. This project focuses on identifying indicators of compromise (IoCs) and understanding the attack vectors of various malware strains.",
         tags: ["Virtualization", "Wireshark", "Reverse Engineering"],
         featured: false,
-        status: "maintenance"
+        status: "maintenance",
+        githubLink: "https://github.com/balanishithreddy/malware-lab"
     },
     {
         slug: "blockchain-voting",
@@ -57,7 +62,8 @@ export const projects: Project[] = [
         fullDescription: "A decentralized application (DApp) that leverages blockchain technology to ensure fair and transparent voting processes. By using Solidity-based smart contracts on the Ethereum network, it eliminates the possibility of double-voting and ensures that all results are permanently recorded and immutable.",
         tags: ["Solidity", "Web3.js", "Ethereum"],
         featured: false,
-        status: "blocked"
+        status: "blocked",
+        githubLink: "https://github.com/balanishithreddy/blockchain-voting"
     },
     {
         slug: "zero-trust-demo",
@@ -66,6 +72,7 @@ export const projects: Project[] = [
         fullDescription: "A demonstration of Zero Trust security principles applied to a microservices architecture. It implements identity-based access control, mutual TLS (mTLS) for service-to-service communication, and continuous authentication policies, ensuring that trust is never assumed regardless of the network location.",
         tags: ["Go", "gRPC", "mTLS", "IAM"],
         featured: false,
-        status: "blocked"
+        status: "blocked",
+        githubLink: "https://github.com/balanishithreddy/zero-trust-demo"
     }
 ];

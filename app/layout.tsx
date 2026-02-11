@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Bala Nishith Reddy | Cybersecurity Portfolio",
-  description: "Personal portfolio of a Computer Science undergraduate specializing in cybersecurity and software engineering.",
+  description: "Aspiring for Cyber Security and Software Engineering. Building robust, secure, and scalable solutions.",
 };
 
 export default function RootLayout({

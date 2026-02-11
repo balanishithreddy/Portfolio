@@ -38,7 +38,7 @@ export function Hero() {
                         </h1>
 
                         <p className="text-xl text-gray-400 mb-8 max-w-lg leading-relaxed">
-                            <span className="text-white font-semibold italic">Aspiring</span> Computer Science Undergraduate specializing in <span className="text-primary">Cybersecurity</span> and <span className="text-white">Software Engineering</span>. Building robust, secure, and scalable solutions.
+                            <span className="text-white font-semibold italic">Aspiring</span> for <span className="text-primary">Cyber Security</span> and <span className="text-white">Software Engineering</span>. Building robust, secure, and scalable solutions.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">

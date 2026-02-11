@@ -7,44 +7,7 @@ import { motion } from "framer-motion"
 import { ExternalLink, Lock, Shield } from "lucide-react"
 import Link from "next/link"
 
-const projects = [
-    {
-        title: "SecureChat Application",
-        description: "End-to-end encrypted messaging platform built with React and Socket.io. Features include self-destructing messages and multi-factor authentication.",
-        tags: ["React", "Node.js", "Socket.io", "Cryptography"],
-        featured: true
-    },
-    {
-        title: "Vulnerability Scanner",
-        description: "Automated Python script for scanning common web vulnerabilities (XSS, SQLi) in target URLs. Generates detailed PDF reports.",
-        tags: ["Python", "Selenium", "Owasp ZAP", "Automation"],
-        featured: false
-    },
-    {
-        title: "IDS: Intrusion Detection System",
-        description: "Real-time network monitoring tool that detects unauthorized access attempts and logs anomalies using signature-based detection.",
-        tags: ["C++", "Networking", "Security", "Linux"],
-        featured: true
-    },
-    {
-        title: "Malware Analysis Lab",
-        description: "A sandbox environment for safe execution and behavioral analysis of malicious software, documenting API calls and network activity.",
-        tags: ["Virtualization", "Wireshark", "Reverse Engineering"],
-        featured: false
-    },
-    {
-        title: "Blockchain Voting System",
-        description: "Decentralized voting platform ensuring transparency and tamper-proof records using Solidity and Ethereum smart contracts.",
-        tags: ["Solidity", "Web3.js", "Ethereum"],
-        featured: false
-    },
-    {
-        title: "Zero Trust Architecture Demo",
-        description: "Implementation of a Zero Trust security model for internal microservices, featuring identity-based access control.",
-        tags: ["Go", "gRPC", "mTLS", "IAM"],
-        featured: false
-    }
-]
+import { projects } from "@/lib/projects-data"
 
 export function Projects() {
     return (
@@ -68,41 +31,64 @@ export function Projects() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project, index) => (
                         <motion.div
-                            key={project.title}
+                            key={project.slug}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                            <Card className="bg-card/50 border-white/5 hover:border-primary/50 transition-colors h-full flex flex-col backdrop-blur-sm group overflow-hidden">
-                                <CardHeader>
-                                    <div className="flex justify-between items-start mb-2">
-                                        <Lock className="h-8 w-8 text-primary group-hover:animate-pulse" />
-                                        {project.featured && <Badge variant="neon">Priority</Badge>}
-                                    </div>
-                                    <CardTitle className="text-xl text-white group-hover:text-primary transition-colors">
-                                        {project.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent className="flex-grow">
-                                    <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                                        {project.description}
-                                    </p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.tags.map((tag) => (
-                                            <Badge key={tag} variant="secondary" className="bg-secondary/50 text-gray-300">
-                                                {tag}
-                                            </Badge>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                                <CardFooter className="pt-4 border-t border-white/5 bg-black/20">
-                                    <div className="flex items-center gap-2 text-xs font-mono text-red-500/80 uppercase tracking-widest animate-pulse">
-                                        <Shield className="h-3 w-3" />
-                                        Administrator has blocked the site
-                                    </div>
-                                </CardFooter>
-                            </Card>
+                            <Link href={`/projects/${project.slug}`} className="block h-full cursor-pointer">
+                                <Card className="bg-card/50 border-white/5 hover:border-primary/50 transition-colors h-full flex flex-col backdrop-blur-sm group overflow-hidden">
+                                    <CardHeader>
+                                        <div className="flex justify-between items-start mb-2">
+                                            <Lock className="h-8 w-8 text-primary group-hover:animate-pulse" />
+                                            <div className="flex gap-2">
+                                                {project.status === 'live' && (
+                                                    <Badge variant="neon" className="bg-green-500/10 text-green-500 border-green-500/20">
+                                                        LIVE
+                                                    </Badge>
+                                                )}
+                                                {project.featured && <Badge variant="neon">Priority</Badge>}
+                                            </div>
+                                        </div>
+                                        <CardTitle className="text-xl text-white group-hover:text-primary transition-colors">
+                                            {project.title}
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent className="flex-grow">
+                                        <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                                            {project.description}
+                                        </p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.tags.map((tag) => (
+                                                <Badge key={tag} variant="secondary" className="bg-secondary/50 text-gray-300">
+                                                    {tag}
+                                                </Badge>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                    <CardFooter className="pt-4 border-t border-white/5 bg-black/20">
+                                        {project.status === 'live' && (
+                                            <div className="flex items-center gap-2 text-xs font-mono text-green-500 uppercase tracking-widest">
+                                                <ExternalLink className="h-3 w-3" />
+                                                View Live Deployment
+                                            </div>
+                                        )}
+                                        {project.status === 'maintenance' && (
+                                            <div className="flex items-center gap-2 text-xs font-mono text-yellow-500/80 uppercase tracking-widest">
+                                                <Shield className="h-3 w-3" />
+                                                Under Maintenance
+                                            </div>
+                                        )}
+                                        {project.status === 'blocked' && (
+                                            <div className="flex items-center gap-2 text-xs font-mono text-red-500/80 uppercase tracking-widest animate-pulse">
+                                                <Shield className="h-3 w-3" />
+                                                Administrator has blocked the site
+                                            </div>
+                                        )}
+                                    </CardFooter>
+                                </Card>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>
